@@ -1,23 +1,34 @@
 import React, { Component } from "react";
 import PriceFormatter from "../utility/PriceFormatter";
-import { ProductCard, ProductImg } from "./styled/StyledProductItem";
+import {
+	ProductCard,
+	ProductCardBody,
+	ProductCardText,
+	ProductImageOutOfStock,
+	ProductImg,
+	ProductImgContainer,
+} from "./styled/StyledProductItem";
 
 export default class ProductItem extends Component {
 	constructor(props) {
 		super();
 	}
 	render() {
-		const { gallery, name, brand, prices, inStock, id } = this.props.product;
+		const { gallery, name, prices, inStock, id } = this.props.product;
 		return (
 			<ProductCard to={`/product/${id}`}>
-				<ProductImg src={gallery[0]} />
-				<div>
-					<h3>{name}</h3>
-					<h3>{brand}</h3>
-					<h3>
+				<ProductImgContainer>
+					<ProductImg src={gallery[0]} />
+					{!inStock && (
+						<ProductImageOutOfStock>OUT OF STOCK</ProductImageOutOfStock>
+					)}
+				</ProductImgContainer>
+				<ProductCardBody>
+					<ProductCardText thin>{name}</ProductCardText>
+					<ProductCardText>
 						<PriceFormatter prices={prices} />
-					</h3>
-				</div>
+					</ProductCardText>
+				</ProductCardBody>
 			</ProductCard>
 		);
 	}
