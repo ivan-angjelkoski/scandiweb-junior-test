@@ -11,11 +11,11 @@ export const Ul = styled.ul`
 export const Li = styled(Link)`
 	text-transform: uppercase;
 	font-size: 16px;
-	font-weight: ${(props) => (props.active ? "600" : "400")};
-	color: ${(props) => (props.active ? "#5ECE7B" : "black")};
+	font-weight: ${(props) => (props.activelink ? "600" : "400")};
+	color: ${(props) => (props.activelink ? "#5ECE7B" : "black")};
 	padding: 32px 16px;
 	border-bottom: 2px solid
-		${(props) => (props.active ? "#5ECE7B" : "transparent")};
+		${(props) => (props.activelink ? "#5ECE7B" : "transparent")};
 	cursor: pointer;
 	&:hover {
 		border-bottom: 2px solid #5ece7b;

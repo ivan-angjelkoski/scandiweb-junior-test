@@ -12,7 +12,7 @@ export default class CategoryMenu extends Component {
 							{context.state.categories.map((category) => (
 								<Li
 									to={"/"}
-									active={context.state.category == category.name}
+									activelink={context.state.category === category.name}
 									key={category.name}
 									onClick={() => {
 										context.setCategory(category.name);

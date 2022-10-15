@@ -11,7 +11,7 @@ export default class Navbar extends Component {
 		return (
 			<Nav>
 				<CategoryMenu />
-				<Link>
+				<Link to={"/cart"}>
 					<BsHandbagFill
 						color='#52D67A'
 						fontSize={"3rem"}
