@@ -17,8 +17,8 @@ export const AttributesFlex = styled.div`
 `;
 
 export const AttributeText = styled.button`
-	padding: 1rem;
-	font-size: 16px;
+	padding: ${(props) => (props.compact ? "7px" : "16px")};
+	font-size: ${(props) => (props.compact ? "12px" : "16px")};
 	font-weight: 400;
 	background: ${(props) => (props.selected ? "#1d1f22" : "transparent")};
 	color: ${(props) => (props.selected ? "#fff" : "1d1f22")};
@@ -30,8 +30,9 @@ export const AttributeText = styled.button`
 `;
 
 export const AttributeSwatch = styled.button`
-	width: 32px;
-	height: 32px;
+	width: ${(props) => (props.small ? "25px" : props.compact ? "16px" : "32px")};
+	height: ${(props) =>
+		props.small ? "25px" : props.compact ? "16px" : "32px"};
 	background: ${(props) => props.bg};
 	border: 1px solid ${(props) => (props.selected ? "white" : props.bg)};
 	outline: ${(props) => (props.selected ? "3px solid #5ECE7B" : "")};

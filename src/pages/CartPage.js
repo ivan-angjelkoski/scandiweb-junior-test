@@ -19,6 +19,7 @@ export default class CartPage extends Component {
 						<>
 							{ctx.state.cart.map((item) => (
 								<CartItem
+									small={true}
 									item={item}
 									key={item.id}
 									changeAttribute={ctx.changeAttribute}

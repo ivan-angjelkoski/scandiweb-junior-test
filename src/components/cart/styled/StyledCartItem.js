@@ -24,7 +24,7 @@ export const MainInfoQuantity = styled.div`
 `;
 
 export const ImageSection = styled.div`
-	flex-basis: 200px;
+	flex-basis: ${(props) => (props.compact ? "100px" : "200px")};
 	position: relative;
 `;
 

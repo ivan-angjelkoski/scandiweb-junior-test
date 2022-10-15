@@ -64,7 +64,7 @@ export default class CartItem extends Component {
 							if (attr.type == "text") {
 								return (
 									<TextButton
-										small
+										compact={this.props.compact}
 										size='sm'
 										attribute={attr}
 										key={attr.id}
@@ -77,11 +77,12 @@ export default class CartItem extends Component {
 							if (attr.type == "swatch") {
 								return (
 									<SwatchButton
-										small
+										compact={this.props.compact}
 										attribute={attr}
 										key={attr.id}
-										handleClick={changeAttribute}
+										handleClick={this.handleClick}
 										selectedAttributes={selectedAttributes}
+										cartItemId={id}
 									/>
 								);
 							}
@@ -112,7 +113,7 @@ export default class CartItem extends Component {
 						</Button>
 					</MainInfoQuantity>
 				</MainInfo>
-				<ImageSection>
+				<ImageSection compact={this.props.compact}>
 					<Img src={product.gallery[this.state.imgIndex]} />
 					<ImageSectionControls>
 						<ImageControl onClick={this.handleIncrement}>&lt;</ImageControl>

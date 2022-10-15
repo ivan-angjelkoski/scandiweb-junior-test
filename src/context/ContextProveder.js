@@ -55,6 +55,7 @@ export default class ContextProveder extends Component {
 		}));
 	};
 	changeAttribute = (attrId, attrValue, id) => {
+		console.log(attrId, attrValue, id);
 		this.setState((prev) => ({
 			cart: prev.cart.map((cartItem) => {
 				if (cartItem.id == id) {

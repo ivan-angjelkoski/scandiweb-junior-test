@@ -21,6 +21,8 @@ export default class SwatchButton extends Component {
 					{items.map((item) => {
 						return (
 							<AttributeSwatch
+								small={this.props.small}
+								compact={this.props.compact}
 								key={item.id}
 								bg={item.value}
 								selected={this.props.selectedAttributes[id] == item.id}

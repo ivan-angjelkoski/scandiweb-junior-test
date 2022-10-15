@@ -9,6 +9,7 @@ const StyledButton = styled.button`
 	cursor: pointer;
 	border: ${(props) => (props.outline ? "1px" : "2px")} solid
 		${(props) => (props.outline ? "#000" : "#5ECE7B")};
+	text-transform: uppercase;
 	&:disabled {
 		opacity: 0.4;
 	}
