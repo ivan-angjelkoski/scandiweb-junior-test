@@ -4,11 +4,13 @@ import { Link } from "react-router-dom";
 import { StoreContext } from "../../context/ContextProveder";
 import Button from "../Button";
 import CartItem from "../cart/CartItem";
+import CartMenuQuantity from "./CartMenuQuantity";
 import {
 	CartButton,
 	CartButtonMenu,
 	CartOverlay,
 	CheckoutSection,
+	StyledLink,
 	TotalCartMenu,
 } from "./styled/StyledCartMenu";
 export default class CartMenu extends Component {
@@ -81,29 +83,36 @@ export default class CartMenu extends Component {
 										</div>
 									</TotalCartMenu>
 									<CheckoutSection>
-										<Link to={"/cart"}>
-											<Button
-												full
-												outline
-												style={{ height: "100%" }}
-											>
-												View Bag
-											</Button>
-										</Link>
-										<Link to={"/cart"}>
-											<Button
-												full
-												style={{ height: "100%" }}
-											>
-												checkout
-											</Button>
-										</Link>
+										<StyledLink
+											to={"/cart"}
+											onClick={(e) => {
+												e.stopPropagation();
+												this.setState((prev) => ({
+													isOpen: false,
+												}));
+											}}
+											outline
+										>
+											View Bag
+										</StyledLink>
+										<StyledLink
+											to={"/cart"}
+											onClick={(e) => {
+												e.stopPropagation();
+												this.setState((prev) => ({
+													isOpen: false,
+												}));
+											}}
+										>
+											checkout
+										</StyledLink>
 									</CheckoutSection>
 								</CartButtonMenu>
 							)}
 						</StoreContext.Consumer>
 					</>
 				)}
+				<CartMenuQuantity />
 			</CartButton>
 		);
 	}

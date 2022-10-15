@@ -9,6 +9,11 @@ export const DollarMenuButton = styled.div`
 	background: none;
 	cursor: pointer;
 	position: relative;
+	padding: 3px 5px;
+	border-radius: 6px;
+	&:hover {
+		background-color: #eee;
+	}
 `;
 
 export const DollarMenuList = styled.ul`
