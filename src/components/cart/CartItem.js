@@ -4,7 +4,9 @@ import SwatchButton from "../SwatchButton";
 import TextButton from "../TextButton";
 import PriceFormatter from "../utility/PriceFormatter";
 import {
+	ImageControl,
 	ImageSection,
+	ImageSectionControls,
 	Img,
 	Main,
 	MainInfo,
@@ -22,6 +24,28 @@ export default class CartItem extends Component {
 	}
 	handleClick = (attrId, attrValue) => {
 		this.props.changeAttribute(attrId, attrValue, this.props.item.id);
+	};
+	handleIncrement = () => {
+		if (this.state.imgIndex + 1 == this.props.item.product.gallery.length) {
+			this.setState((prev) => ({
+				imgIndex: 0,
+			}));
+		} else {
+			this.setState((prev) => ({
+				imgIndex: prev.imgIndex + 1,
+			}));
+		}
+	};
+	handleDecrement = () => {
+		if (this.state.imgIndex - 1 < 0) {
+			this.setState((prev) => ({
+				imgIndex: this.props.item.product.gallery.length - 1,
+			}));
+		} else {
+			this.setState((prev) => ({
+				imgIndex: prev.imgIndex - 1,
+			}));
+		}
 	};
 
 	render() {
@@ -90,10 +114,10 @@ export default class CartItem extends Component {
 				</MainInfo>
 				<ImageSection>
 					<Img src={product.gallery[this.state.imgIndex]} />
-					<div>
-						<div>&lt;</div>
-						<div>&gt;</div>
-					</div>
+					<ImageSectionControls>
+						<ImageControl onClick={this.handleIncrement}>&lt;</ImageControl>
+						<ImageControl onClick={this.handleDecrement}>&gt;</ImageControl>
+					</ImageSectionControls>
 				</ImageSection>
 			</Main>
 		);

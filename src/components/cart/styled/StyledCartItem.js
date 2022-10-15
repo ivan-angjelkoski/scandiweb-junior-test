@@ -25,11 +25,27 @@ export const MainInfoQuantity = styled.div`
 
 export const ImageSection = styled.div`
 	flex-basis: 200px;
+	position: relative;
 `;
 
-export const ImageSectionControls = styled.div``;
+export const ImageSectionControls = styled.div`
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+`;
 
-export const ImageControl = styled.div``;
+export const ImageControl = styled.div`
+	/* border: 1px solid black; */
+	padding: 2px 4px;
+	background-color: #000000aa;
+	color: white;
+	user-select: none;
+	cursor: pointer;
+`;
 
 export const Img = styled.img``;
 
