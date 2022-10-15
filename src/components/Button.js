@@ -7,7 +7,8 @@ const StyledButton = styled.button`
 	background: ${(props) => (props.outline ? "transparent" : "#5ECE7B")};
 	color: ${(props) => (props.outline ? "#000" : "#fff")};
 	cursor: pointer;
-	border: 2px solid ${(props) => (props.outline ? "#000" : "#5ECE7B")};
+	border: ${(props) => (props.outline ? "1px" : "2px")} solid
+		${(props) => (props.outline ? "#000" : "#5ECE7B")};
 	&:disabled {
 		opacity: 0.4;
 	}

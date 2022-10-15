@@ -13,6 +13,7 @@ export const StoreContext = createContext({
 		category: "all",
 		categories: [],
 		cart: [],
+		tax: 21,
 	},
 	addToCart: () => {},
 	changeQuantity: () => {},
@@ -33,6 +34,7 @@ export default class ContextProveder extends Component {
 			categories: [],
 			currencies: [],
 			cart: [],
+			tax: 21,
 		};
 	}
 
@@ -52,8 +54,46 @@ export default class ContextProveder extends Component {
 			}),
 		}));
 	};
-	changeQuantity = () => {};
-	changeAttribute = () => {};
+	changeAttribute = (attrId, attrValue, id) => {
+		this.setState((prev) => ({
+			cart: prev.cart.map((cartItem) => {
+				if (cartItem.id == id) {
+					return {
+						...cartItem,
+						selectedAttributes: {
+							...cartItem.selectedAttributes,
+							[attrId]: attrValue,
+						},
+					};
+				} else {
+					return cartItem;
+				}
+			}),
+		}));
+	};
+	changeQuantity = (number, id) => {
+		const item = this.state.cart.find((cartItem) => cartItem.id == id);
+
+		if (item.quantity + number == 0) {
+			this.setState((prev) => ({
+				cart: prev.cart.filter((cartItem) => cartItem.id != id),
+			}));
+		} else {
+			this.setState((prev) => ({
+				cart: prev.cart.map((cartItem) => {
+					if (cartItem.id == id) {
+						if (number == -1) {
+							return { ...cartItem, quantity: cartItem.quantity - 1 };
+						} else {
+							return { ...cartItem, quantity: cartItem.quantity + 1 };
+						}
+					} else {
+						return cartItem;
+					}
+				}),
+			}));
+		}
+	};
 	componentDidMount() {
 		apolloClient
 			.query({
