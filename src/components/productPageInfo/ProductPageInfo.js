@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { StoreContext } from "../../context/ContextProveder";
 import Button from "../Button";
 import SwatchButton from "../SwatchButton";
 import TextButton from "../TextButton";
+import PriceFormatter from "../utility/PriceFormatter";
 import {
 	Description,
 	ProductBody,
@@ -44,12 +46,14 @@ export default class ProductPageInfo extends Component {
 		const isValid = attributes.every(
 			(attr) => attr.id in this.state.selectedAttributes
 		);
+		const ctx = this.props.ctx;
 		return (
 			<ProductInfoMain>
 				<ProductInfoImageSection>
 					<ProductInfoThumbSection>
 						{gallery.map((img, i) => (
 							<ProductInfoImageThumb
+								selected={i == this.state.imgIndex}
 								key={i}
 								onClick={() => {
 									this.setState((prev) => ({
@@ -89,13 +93,27 @@ export default class ProductPageInfo extends Component {
 							);
 						}
 					})}
+					<ProductBodyText roboto>PRICE:</ProductBodyText>
+					<ProductBodyText
+						size='24px'
+						roboto
+					>
+						<PriceFormatter prices={prices} />
+					</ProductBodyText>
+
 					<Button
 						disabled={!inStock || !isValid}
 						full
-						// onClick={}
+						onClick={() => {
+							ctx.addToCart({
+								product: this.props.product,
+								selectedAttributes: this.state.selectedAttributes,
+							});
+						}}
 					>
 						{inStock ? "ADD TO CART" : "OUT OF STOCK"}
 					</Button>
+
 					<Description
 						dangerouslySetInnerHTML={{ __html: description }}
 					></Description>

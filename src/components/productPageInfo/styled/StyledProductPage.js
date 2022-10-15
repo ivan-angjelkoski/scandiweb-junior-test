@@ -24,6 +24,7 @@ export const ProductInfoImageThumb = styled.img`
 	aspect-ratio: 1;
 	object-fit: cover;
 	cursor: pointer;
+	outline: 2px solid ${(props) => (props.selected ? "black" : "transparent")};
 `;
 
 export const ProductInfoImageMainSection = styled.div`
@@ -39,10 +40,12 @@ export const ProductBody = styled.div`
 `;
 
 export const ProductBodyText = styled.h3`
-	font-size: ${(props) => (props.roboto ? "18px" : "30px")};
+	font-size: ${(props) =>
+		props.size ? props.size : props.roboto ? "18px" : "30px"};
 	${(props) => (props.roboto ? `font-family: "Roboto",sans-serif` : "")};
 	font-weight: ${(props) =>
 		props.roboto ? "700" : props.bold ? "600" : "400"};
+	margin: 10px 0;
 `;
 
 export const Description = styled.div`

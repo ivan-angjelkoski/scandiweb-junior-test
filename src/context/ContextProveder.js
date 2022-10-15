@@ -1,6 +1,7 @@
 import React, { Component, createContext } from "react";
 import { apolloClient } from "..";
 import { GET_PRODUCTS_BY_CATEGORY, INITIAL_QUERY } from "../gql/queries";
+import { v4 as uuid } from "uuid";
 
 export const StoreContext = createContext({
 	state: {
@@ -41,7 +42,16 @@ export default class ContextProveder extends Component {
 	setCurrency = (value) => {
 		this.setState((prev) => ({ currency: value }));
 	};
-	addToCart = (product) => {};
+	addToCart = ({ product, selectedAttributes }) => {
+		this.setState((prev) => ({
+			cart: prev.cart.concat({
+				product,
+				selectedAttributes,
+				quantity: 1,
+				id: uuid(),
+			}),
+		}));
+	};
 	changeQuantity = () => {};
 	changeAttribute = () => {};
 	componentDidMount() {
@@ -90,7 +100,7 @@ export default class ContextProveder extends Component {
 			state: this.state,
 			setCategory: this.setCategory,
 			setCurrency: this.setCurrency,
-			addToCard: this.addToCart,
+			addToCart: this.addToCart,
 			changeQuantity: this.changeQuantity,
 			changeAttribute: this.changeAttribute,
 		};

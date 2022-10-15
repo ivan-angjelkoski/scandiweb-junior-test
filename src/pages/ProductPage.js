@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import { useParams } from "react-router-dom";
 import { apolloClient } from "..";
 import ProductPageInfo from "../components/productPageInfo/ProductPageInfo";
+import { StoreContext } from "../context/ContextProveder";
 import { GET_PRODUCT } from "../gql/queries";
 
 class ProductPage extends Component {
@@ -45,7 +46,16 @@ class ProductPage extends Component {
 		if (this.state.error) {
 			return <h1>Error...</h1>;
 		}
-		return <ProductPageInfo product={this.state.product} />;
+		return (
+			<StoreContext.Consumer>
+				{(ctx) => (
+					<ProductPageInfo
+						ctx={ctx}
+						product={this.state.product}
+					/>
+				)}
+			</StoreContext.Consumer>
+		);
 	}
 }
 
