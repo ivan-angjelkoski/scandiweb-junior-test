@@ -14,7 +14,7 @@ export default class Navbar extends Component {
 				<Link to={"/cart"}>
 					<BsHandbagFill
 						color='#52D67A'
-						fontSize={"3rem"}
+						fontSize={"2rem"}
 					/>
 				</Link>
 				<Actions>

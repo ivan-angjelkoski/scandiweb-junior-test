@@ -12,6 +12,7 @@ export const DollarMenuButton = styled.div`
 `;
 
 export const DollarMenuList = styled.ul`
+	box-shadow: 0px 0px 5px #00000033;
 	width: 114px;
 	background-color: #eee;
 	position: absolute;
