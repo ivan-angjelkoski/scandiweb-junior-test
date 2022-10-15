@@ -13,8 +13,11 @@ export const StoreContext = createContext({
 		categories: [],
 		cart: [],
 	},
+	addToCart: () => {},
+	changeQuantity: () => {},
 	setCategory: () => {},
 	setCurrency: () => {},
+	changeAttribute: () => {},
 });
 
 export default class ContextProveder extends Component {
@@ -38,7 +41,9 @@ export default class ContextProveder extends Component {
 	setCurrency = (value) => {
 		this.setState((prev) => ({ currency: value }));
 	};
-
+	addToCart = (product) => {};
+	changeQuantity = () => {};
+	changeAttribute = () => {};
 	componentDidMount() {
 		apolloClient
 			.query({
@@ -85,6 +90,9 @@ export default class ContextProveder extends Component {
 			state: this.state,
 			setCategory: this.setCategory,
 			setCurrency: this.setCurrency,
+			addToCard: this.addToCart,
+			changeQuantity: this.changeQuantity,
+			changeAttribute: this.changeAttribute,
 		};
 		return (
 			<StoreContext.Provider value={ctxObject}>
